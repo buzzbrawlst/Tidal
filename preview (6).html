@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Tidal</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    width:100%;
+    min-height:100%;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    color:white;
+    background:
+        linear-gradient(
+            180deg,
+            #004f7d,
+            #002d4d 55%,
+            #001d32
+        );
+}
+
+/* =========================================
+   NAVBAR
+========================================= */
+
+.navbar{
+    position:fixed;
+
+    top:18px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    width:min(1100px, calc(100% - 36px));
+    height:64px;
+
+    z-index:50;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 22px;
+
+    border-radius:20px;
+
+    background:rgba(255,255,255,.10);
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    backdrop-filter:
+        blur(25px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(25px)
+        saturate(140%);
+
+    box-shadow:
+        0 15px 45px
+        rgba(0,35,70,.25),
+
+        inset 0 1px 0
+        rgba(255,255,255,.18);
+
+    animation:
+        navIn .7s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes navIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateX(-50%)
+            translateY(-15px);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateX(-50%)
+            translateY(0);
+    }
+}
+
+
+/* LOGO */
+
+.nav-logo{
+
+    display:flex;
+    align-items:center;
+
+    gap:10px;
+
+    color:white;
+
+    text-decoration:none;
+
+    font-size:18px;
+    font-weight:800;
+
+    letter-spacing:-.5px;
+}
+
+.nav-logo img{
+
+    width:34px;
+    height:34px;
+
+    object-fit:contain;
+
+    border-radius:10px;
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0,0,0,.2)
+        );
+
+    transition:.25s ease;
+}
+
+.nav-logo:hover img{
+
+    transform:
+        rotate(-5deg)
+        scale(1.08);
+}
+
+
+/* LINKS */
+
+.nav-links{
+
+    display:flex;
+    align-items:center;
+
+    gap:6px;
+}
+
+.nav-links a{
+
+    padding:
+        9px 14px;
+
+    border-radius:12px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    transition:
+        .2s ease;
+}
+
+.nav-links a:hover{
+
+    color:white;
+
+    background:
+        rgba(255,255,255,.10);
+
+    transform:
+        translateY(-1px);
+}
+
+
+/* =========================================
+   BACKGROUND
+========================================= */
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
+}
+
+.glow{
+
+    position:absolute;
+
+    width:600px;
+    height:600px;
+
+    border-radius:50%;
+
+    background:
+        rgba(0,180,255,.12);
+
+    filter:blur(100px);
+
+    top:-250px;
+    left:50%;
+
+    transform:
+        translateX(-50%);
+}
+
+
+/* =========================================
+   PAGE
+========================================= */
+
+.page{
+
+    position:relative;
+
+    z-index:2;
+
+    width:100%;
+
+    min-height:100vh;
+
+    padding:
+        145px 25px 70px;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+
+    width:min(900px, 100%);
+
+    margin:
+        0 auto 35px;
+
+    text-align:center;
+}
+
+.hero-logo{
+
+    width:90px;
+    height:90px;
+
+    object-fit:contain;
+
+    border-radius:24px;
+
+    margin-bottom:25px;
+
+    filter:
+        drop-shadow(
+            0 15px 30px
+            rgba(0,0,0,.25)
+        );
+}
+
+.hero h1{
+
+    margin:0;
+
+    font-size:
+        clamp(
+            42px,
+            7vw,
+            72px
+        );
+
+    font-weight:900;
+
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+
+    color:
+        #71d8ff;
+}
+
+.hero p{
+
+    max-width:650px;
+
+    margin:
+        20px auto 0;
+
+    color:
+        rgba(255,255,255,.68);
+
+    font-size:17px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================
+   CONTENT GRID
+========================================= */
+
+.content{
+
+    width:min(1000px, 100%);
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:18px;
+}
+
+
+/* =========================================
+   CARDS
+========================================= */
+
+.card{
+
+    padding:30px;
+
+    border-radius:24px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.06)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    backdrop-filter:
+        blur(25px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(25px)
+        saturate(140%);
+
+    box-shadow:
+        0 20px 60px
+        rgba(0,25,50,.18),
+
+        inset 0 1px 0
+        rgba(255,255,255,.15);
+
+    transition:
+        transform .25s ease,
+        background .25s ease;
+}
+
+.card:hover{
+
+    transform:
+        translateY(-5px);
+
+    background:
+        rgba(255,255,255,.12);
+}
+
+.card.full{
+
+    grid-column:
+        1 / -1;
+}
+
+.card h2{
+
+    margin:
+        0 0 12px;
+
+    font-size:22px;
+
+    font-weight:800;
+}
+
+.card p{
+
+    margin:0;
+
+    color:
+        rgba(255,255,255,.65);
+
+    font-size:15px;
+
+    line-height:1.7;
+}
+
+
+/* =========================================
+   FEATURE LIST
+========================================= */
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap:12px;
+
+    margin-top:20px;
+}
+
+.feature{
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.09);
+}
+
+.feature strong{
+
+    display:block;
+
+    margin-bottom:5px;
+
+    font-size:14px;
+}
+
+.feature span{
+
+    color:
+        rgba(255,255,255,.55);
+
+    font-size:12px;
+}
+
+
+/* =========================================
+   WARNING
+========================================= */
+
+.notice{
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:16px;
+
+    background:
+        rgba(0,140,210,.12);
+
+    border:
+        1px solid
+        rgba(100,210,255,.16);
+
+    color:
+        rgba(255,255,255,.62);
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer{
+
+    width:min(1000px,100%);
+
+    margin:
+        35px auto 0;
+
+    text-align:center;
+
+    color:
+        rgba(255,255,255,.35);
+
+    font-size:12px;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:650px){
+
+    .navbar{
+
+        width:
+            calc(100% - 24px);
+
+        top:12px;
+
+        height:58px;
+
+        padding:
+            0 15px;
+    }
+
+    .nav-logo span{
+        display:none;
+    }
+
+    .nav-links{
+        gap:2px;
+    }
+
+    .nav-links a{
+
+        padding:
+            8px 9px;
+
+        font-size:12px;
+    }
+
+    .page{
+
+        padding:
+            110px 16px 50px;
+    }
+
+    .hero h1{
+
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+
+        font-size:14px;
+    }
+
+    .content{
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .card.full{
+
+        grid-column:auto;
+    }
+
+    .features{
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ======================================
+     NAVBAR
+====================================== -->
+
+<nav class="navbar">
+
+    <a href="index.html" class="nav-logo">
+
+        <img
+            src="https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Tidal.png?raw=true"
+            alt="Tidal"
+        >
+
+        <span>Tidal</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="index.html">
+            Home
+        </a>
+
+        <a href="download.html">
+            Download
+        </a>
+
+        <a href="about.html">
+            About
+        </a>
+
+        <a
+            href="https://discord.com/"
+            target="_blank"
+        >
+            Discord
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ======================================
+     BACKGROUND
+====================================== -->
+
+<div class="background">
+
+    <div class="glow"></div>
+
+</div>
+
+
+<!-- ======================================
+     PAGE
+====================================== -->
+
+<main class="page">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <img
+            class="hero-logo"
+            src="https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Tidal.png?raw=true"
+            alt="Tidal"
+        >
+
+        <h1>
+            About <span>Tidal</span>
+        </h1>
+
+        <p>
+            Tidal is an OGFN project focused on bringing back
+            the classic Fortnite experience while building a
+            modern, simple and polished way to access it.
+        </p>
+
+    </section>
+
+
+    <!-- CONTENT -->
+
+    <section class="content">
+
+
+        <!-- ABOUT -->
+
+        <div class="card full">
+
+            <h2>
+                What is Tidal?
+            </h2>
+
+            <p>
+                Tidal is a community-driven OGFN project
+                designed around the classic Fortnite experience.
+                The goal is to create a clean ecosystem where
+                players can access the project through a dedicated
+                launcher, manage their installations and eventually
+                connect to the Tidal game environment.
+            </p>
+
+        </div>
+
+
+        <!-- VISION -->
+
+        <div class="card">
+
+            <h2>
+                Our Goal
+            </h2>
+
+            <p>
+                We're aiming to make the experience feel
+                straightforward from the moment you visit the
+                website to the moment you launch the game.
+                No unnecessary clutter — just a clean launcher,
+                simple downloads and the OG experience.
+            </p>
+
+        </div>
+
+
+        <!-- COMMUNITY -->
+
+        <div class="card">
+
+            <h2>
+                Community
+            </h2>
+
+            <p>
+                Tidal is built with the community in mind.
+                The project is intended to grow alongside its
+                players, with new features, improvements and
+                experiences being added over time.
+            </p>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="card full">
+
+            <h2>
+                What Tidal is building
+            </h2>
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <strong>
+                        🌊 Tidal Launcher
+                    </strong>
+
+                    <span>
+                        A dedicated launcher for managing
+                        and starting the project.
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        ⚡ Simple Installation
+                    </strong>
+
+                    <span>
+                        An easy way to get the required
+                        files and installations.
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        🎮 OG Fortnite Experience
+                    </strong>
+
+                    <span>
+                        Built around the classic Fortnite
+                        experience and its gameplay.
+                    </span>
+
+                </div>
+
+
+                <div class="feature">
+
+                    <strong>
+                        🔧 Constant Development
+                    </strong>
+
+                    <span>
+                        The project can continue evolving
+                        with new systems and improvements.
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="card full">
+
+            <h2>
+                Project Status
+            </h2>
+
+            <p>
+                Tidal is currently in development. Some features
+                may not be available yet while the launcher,
+                backend and game infrastructure are being built.
+                More functionality will be introduced as the
+                project develops.
+            </p>
+
+            <div class="notice">
+
+                <strong>
+                    🚧 Tidal is a work in progress.
+                </strong>
+
+                <br>
+
+                Features and availability may change as
+                development continues.
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <footer class="footer">
+
+        Tidal • OGFN Project
+
+    </footer>
+
+
+</main>
+
+</body>
+</html>
