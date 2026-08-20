@@ -603,12 +603,1973 @@ body{
 
     }
 
+    /* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(1100px, calc(100% - 36px));
+    height: 64px;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 22px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.10);
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+
+    box-shadow:
+        0 15px 45px rgba(0,35,70,.20),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+    animation: navIn .7s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes navIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+
+/* LOGO */
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.nav-logo img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0,0,0,.2)
+        );
+
+    transition: .25s ease;
+}
+
+.nav-logo:hover img {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+
+/* LINKS */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-links a {
+    position: relative;
+
+    padding: 9px 14px;
+
+    border-radius: 12px;
+
+    color: rgba(255,255,255,.72);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.nav-links a:hover {
+    color: white;
+
+    background: rgba(255,255,255,.10);
+
+    transform: translateY(-1px);
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    .navbar {
+        width: calc(100% - 24px);
+        top: 12px;
+
+        height: 58px;
+
+        padding: 0 15px;
+    }
+
+    .nav-logo span {
+        display: none;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links a {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+}
+
 }
 
 </style>
 </head>
 
 <body>
+
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tidal Download</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+html,
+body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    background:#008bd1;
+}
+
+body{
+    color:white;
+}
+
+/* =========================================
+   WATER
+========================================= */
+
+#water{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:0;
+}
+
+
+/* =========================================
+   DARK OVERLAY
+========================================= */
+
+.overlay{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            rgba(255,255,255,.07),
+            transparent 45%
+        ),
+        linear-gradient(
+            180deg,
+            rgba(0,40,80,.05),
+            rgba(0,20,50,.18)
+        );
+}
+
+
+/* =========================================
+   MAIN
+========================================= */
+
+.app{
+    position:relative;
+    z-index:5;
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:25px;
+}
+
+
+/* =========================================
+   GLASS CARD
+========================================= */
+
+.launcher{
+
+    width:min(
+        760px,
+        94vw
+    );
+
+    padding:46px;
+
+    border-radius:32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.16),
+            rgba(255,255,255,.07)
+        );
+
+    border:
+        1px solid
+        rgba(255,255,255,.24);
+
+    box-shadow:
+        0 30px 90px
+        rgba(0,35,70,.35),
+
+        inset 0 1px 0
+        rgba(255,255,255,.25),
+
+        inset 0 -1px 0
+        rgba(0,0,0,.08);
+
+    backdrop-filter:
+        blur(28px)
+        saturate(140%);
+
+    -webkit-backdrop-filter:
+        blur(28px)
+        saturate(140%);
+
+    transform:
+        translateY(0);
+
+    animation:
+        cardIn .8s
+        cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+@keyframes cardIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(25px)
+            scale(.96);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
+    text-align:center;
+    margin-bottom:36px;
+}
+
+
+/* =========================================
+   LOGO
+========================================= */
+
+.logo{
+
+    width:82px;
+    height:82px;
+
+    object-fit:contain;
+
+    display:block;
+
+    margin:
+        0 auto 22px;
+
+    border-radius:22px;
+
+    filter:
+        drop-shadow(
+            0 12px 25px
+            rgba(0,0,0,.2)
+        );
+
+    transition:
+        transform .3s ease;
+}
+
+.logo:hover{
+    transform:
+        scale(1.06)
+        rotate(-2deg);
+}
+
+
+/* =========================================
+   TITLE
+========================================= */
+
+.title{
+
+    margin:0;
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            52px
+        );
+
+    font-weight:800;
+
+    letter-spacing:-2px;
+
+    line-height:1;
+}
+
+
+/* =========================================
+   SUBTITLE
+========================================= */
+
+.subtitle{
+
+    margin:
+        14px auto 0;
+
+    max-width:520px;
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size:16px;
+
+    line-height:1.6;
+}
+
+
+/* =========================================
+   DEVICE AREA
+========================================= */
+
+.device-title{
+
+    text-align:center;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:
+        1.6px;
+
+    font-weight:700;
+
+    color:
+        rgba(255,255,255,.55);
+
+    margin-bottom:14px;
+}
+
+
+/* =========================================
+   DEVICE GRID
+========================================= */
+
+.devices{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap:14px;
+}
+
+
+/* =========================================
+   DEVICE BUTTON
+========================================= */
+
+.device{
+
+    position:relative;
+
+    min-height:155px;
+
+    border-radius:22px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.17);
+
+    background:
+        rgba(255,255,255,.085);
+
+    color:white;
+
+    cursor:pointer;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:13px;
+
+    overflow:hidden;
+
+    transition:
+        transform .28s
+        cubic-bezier(.2,.8,.2,1),
+
+        background .28s ease,
+
+        border-color .28s ease,
+
+        box-shadow .28s ease;
+}
+
+
+.device::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(255,255,255,.16),
+            transparent 55%
+        );
+
+    opacity:.55;
+
+    pointer-events:none;
+}
+
+
+.device::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:150px;
+    height:150px;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%)
+        scale(.2);
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.12);
+
+    filter:blur(25px);
+
+    opacity:0;
+
+    transition:
+        .4s ease;
+
+    pointer-events:none;
+}
+
+
+.device:hover{
+
+    transform:
+        translateY(-7px)
+        scale(1.025);
+
+    background:
+        rgba(255,255,255,.14);
+
+    border-color:
+        rgba(255,255,255,.35);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,40,80,.25);
+}
+
+
+.device:hover::after{
+
+    transform:
+        translate(-50%,-50%)
+        scale(1);
+
+    opacity:1;
+}
+
+
+/* =========================================
+   ICON
+========================================= */
+
+.device-icon{
+
+    width:52px;
+    height:52px;
+
+    object-fit:contain;
+
+    position:relative;
+
+    z-index:2;
+
+    filter:
+        drop-shadow(
+            0 6px 12px
+            rgba(0,0,0,.2)
+        );
+
+    transition:
+        transform .3s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+
+.device:hover
+.device-icon{
+
+    transform:
+        translateY(-3px)
+        scale(1.08);
+}
+
+
+/* =========================================
+   DEVICE NAME
+========================================= */
+
+.device-name{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:16px;
+
+    font-weight:700;
+}
+
+
+/* =========================================
+   DEVICE DESCRIPTION
+========================================= */
+
+.device-description{
+
+    position:relative;
+
+    z-index:2;
+
+    font-size:12px;
+
+    color:
+        rgba(255,255,255,.55);
+}
+
+
+/* =========================================
+   RECOMMENDED
+========================================= */
+
+.recommended{
+
+    position:absolute;
+
+    top:10px;
+    right:10px;
+
+    padding:
+        5px 8px;
+
+    border-radius:999px;
+
+    background:
+        rgba(255,255,255,.16);
+
+    border:
+        1px solid
+        rgba(255,255,255,.18);
+
+    font-size:9px;
+
+    font-weight:800;
+
+    text-transform:uppercase;
+
+    letter-spacing:.6px;
+
+    opacity:0;
+
+    transition:.25s ease;
+}
+
+.device.detected
+.recommended{
+    opacity:1;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer{
+
+    text-align:center;
+
+    margin-top:27px;
+
+    font-size:12px;
+
+    color:
+        rgba(255,255,255,.42);
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:650px){
+
+    .launcher{
+
+        padding:28px 20px;
+
+        border-radius:25px;
+
+    }
+
+    .devices{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+    .device{
+
+        min-height:100px;
+
+        flex-direction:row;
+
+        justify-content:flex-start;
+
+        padding:18px 22px;
+
+    }
+
+    .device-icon{
+
+        width:43px;
+        height:43px;
+
+    }
+
+    .device-name{
+
+        font-size:15px;
+
+    }
+
+    .device-description{
+
+        font-size:11px;
+
+    }
+
+    .device-text{
+
+        text-align:left;
+
+    }
+
+    /* =========================================
+   NAVBAR
+========================================= */
+
+.navbar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(1100px, calc(100% - 36px));
+    height: 64px;
+
+    z-index: 20;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 22px;
+
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.10);
+
+    border: 1px solid rgba(255,255,255,.18);
+
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
+
+    box-shadow:
+        0 15px 45px rgba(0,35,70,.20),
+        inset 0 1px 0 rgba(255,255,255,.18);
+
+    animation: navIn .7s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes navIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+
+/* LOGO */
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -.5px;
+}
+
+.nav-logo img {
+    width: 34px;
+    height: 34px;
+
+    object-fit: contain;
+
+    border-radius: 10px;
+
+    filter:
+        drop-shadow(
+            0 5px 10px
+            rgba(0,0,0,.2)
+        );
+
+    transition: .25s ease;
+}
+
+.nav-logo:hover img {
+    transform: rotate(-5deg) scale(1.08);
+}
+
+
+/* LINKS */
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.nav-links a {
+    position: relative;
+
+    padding: 9px 14px;
+
+    border-radius: 12px;
+
+    color: rgba(255,255,255,.72);
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        color .2s ease,
+        background .2s ease,
+        transform .2s ease;
+}
+
+.nav-links a:hover {
+    color: white;
+
+    background: rgba(255,255,255,.10);
+
+    transform: translateY(-1px);
+}
+
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    .navbar {
+        width: calc(100% - 24px);
+        top: 12px;
+
+        height: 58px;
+
+        padding: 0 15px;
+    }
+
+    .nav-logo span {
+        display: none;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links a {
+        padding: 8px 9px;
+        font-size: 12px;
+    }
+
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- ======================================
+     WATER BACKGROUND
+====================================== -->
+
+<canvas id="water"></canvas>
+
+<div class="overlay"></div>
+
+
+<!-- ======================================
+     LAUNCHER
+====================================== -->
+
+<main class="app">
+
+<section class="launcher">
+
+
+    <header class="header">
+
+        <img
+            id="logo"
+            class="logo"
+            alt="OGFN"
+        >
+
+        <h1 class="title">
+            Tidal Launcher
+        </h1>
+
+        <p class="subtitle">
+            Download the official Tidal launcher for your device
+            and jump into the world of OG Chapter 2 Season 3.
+        </p>
+
+    </header>
+
+
+    <div class="device-title">
+        Choose your device
+    </div>
+
+
+    <div class="devices">
+
+
+        <!-- WINDOWS -->
+
+        <button
+            class="device"
+            data-device="windows"
+            onclick="downloadLauncher('windows')"
+        >
+
+            <span class="recommended">
+                Recommended
+            </span>
+
+            <img
+                class="device-icon"
+                id="windowsIcon"
+                alt="Windows"
+            >
+
+            <div class="device-text">
+
+                <div class="device-name">
+                    Windows
+                </div>
+
+                <div class="device-description">
+                    Windows 10 / 11
+                </div>
+
+            </div>
+
+        </button>
+
+
+        <!-- IOS -->
+
+        <button
+            class="device"
+            data-device="ios"
+            onclick="downloadLauncher('ios')"
+        >
+
+            <span class="recommended">
+                Recommended
+            </span>
+
+            <img
+                class="device-icon"
+                id="iosIcon"
+                alt="iOS"
+            >
+
+            <div class="device-text">
+
+                <div class="device-name">
+                    iOS
+                </div>
+
+                <div class="device-description">
+                    iPhone / iPad
+                </div>
+
+            </div>
+
+        </button>
+
+
+        <!-- ANDROID -->
+
+        <button
+            class="device"
+            data-device="android"
+            onclick="downloadLauncher('android')"
+        >
+
+            <span class="recommended">
+                Recommended
+            </span>
+
+            <img
+                class="device-icon"
+                id="androidIcon"
+                alt="Android"
+            >
+
+            <div class="device-text">
+
+                <div class="device-name">
+                    Android
+                </div>
+
+                <div class="device-description">
+                    Android devices
+                </div>
+
+            </div>
+
+        </button>
+
+
+    </div>
+
+
+    <footer class="footer">
+
+        OGFN Launcher • Choose your platform to continue
+
+    </footer>
+
+</section>
+
+</main>
+
+
+<script>
+
+/* ==================================================
+   CONFIG
+   ==================================================
+
+   PUT YOUR IMAGE URLS HERE.
+
+   You can use:
+   - Discord CDN
+   - Imgur
+   - GitHub
+   - Cloudinary
+   - Any direct .png/.jpg/.webp URL
+
+================================================== */
+
+const CONFIG = {
+
+    icons: {
+
+        logo:
+            "https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Tidal.png?raw=true",
+
+        windows:
+            "https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Windows.png?raw=true",
+
+        ios:
+            "https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Apple.png?raw=true",
+
+        android:
+            "https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Android.png?raw=true"
+
+    },
+
+
+    downloads: {
+
+        windows:
+            "https://cdn.discordapp.com/attachments/1530340235723018333/1539633620824629298/Arc-Setup.msi?ex=6a87070c&is=6a85b58c&hm=4b85ce670bded3dd7dbc59a2e6294672bcbfbea635f9c2636853d6c3f5c90dc9&",
+
+        ios:
+            "#",
+
+        android:
+            "#"
+
+    }
+
+};
+
+
+/* ==================================================
+   LOAD IMAGES
+================================================== */
+
+document.getElementById("logo").src =
+    CONFIG.icons.logo;
+
+document.getElementById("windowsIcon").src =
+    CONFIG.icons.windows;
+
+document.getElementById("iosIcon").src =
+    CONFIG.icons.ios;
+
+document.getElementById("androidIcon").src =
+    CONFIG.icons.android;
+
+
+/* ==================================================
+   DOWNLOAD
+================================================== */
+
+function downloadLauncher(device){
+
+    const url =
+        CONFIG.downloads[device];
+
+    if(
+        !url ||
+        url === "#"
+    ){
+
+        alert(
+            "The " +
+            device +
+            " download hasn't been configured yet."
+        );
+
+        return;
+    }
+
+    window.location.href = url;
+}
+
+
+/* ==================================================
+   AUTO DEVICE DETECTION
+================================================== */
+
+const userAgent =
+    navigator.userAgent ||
+    navigator.vendor ||
+    window.opera;
+
+let detected = null;
+
+
+if(
+    /android/i.test(
+        userAgent
+    )
+){
+
+    detected = "android";
+
+}
+else if(
+    /iPad|iPhone|iPod/i.test(
+        userAgent
+    )
+){
+
+    detected = "ios";
+
+}
+else if(
+    /Win/i.test(
+        userAgent
+    )
+){
+
+    detected = "windows";
+
+}
+
+
+if(detected){
+
+    const button =
+        document.querySelector(
+            `[data-device="${detected}"]`
+        );
+
+    if(button){
+
+        button.classList.add(
+            "detected"
+        );
+    }
+}
+
+
+/* ==================================================
+   WATER SHADER
+   ================================================== */
+
+const canvas =
+    document.getElementById(
+        "water"
+    );
+
+const gl =
+    canvas.getContext(
+        "webgl",
+        {
+            antialias:true,
+            alpha:false
+        }
+    );
+
+if(!gl){
+
+    console.error(
+        "WebGL unavailable"
+    );
+
+}
+
+
+/* ==================================================
+   VERTEX
+   ================================================== */
+
+const vertexSource = `
+
+attribute vec2 position;
+
+void main(){
+
+    gl_Position =
+        vec4(
+            position,
+            0.0,
+            1.0
+        );
+
+}
+
+`;
+
+
+/* ==================================================
+   FRAGMENT
+   ================================================== */
+
+const fragmentSource = `
+
+precision highp float;
+
+uniform vec2 resolution;
+uniform vec2 mouse;
+uniform float time;
+
+
+/* HASH */
+
+float hash(vec2 p){
+
+    return fract(
+        sin(
+            dot(
+                p,
+                vec2(
+                    127.1,
+                    311.7
+                )
+            )
+        ) *
+        43758.5453
+    );
+
+}
+
+
+/* NOISE */
+
+float noise(vec2 p){
+
+    vec2 i =
+        floor(p);
+
+    vec2 f =
+        fract(p);
+
+    f =
+        f*f*
+        (3.0-2.0*f);
+
+    float a =
+        hash(i);
+
+    float b =
+        hash(
+            i+
+            vec2(1.0,0.0)
+        );
+
+    float c =
+        hash(
+            i+
+            vec2(0.0,1.0)
+        );
+
+    float d =
+        hash(
+            i+
+            vec2(1.0,1.0)
+        );
+
+    return mix(
+        mix(a,b,f.x),
+        mix(c,d,f.x),
+        f.y
+    );
+
+}
+
+
+/* WATER NOISE */
+
+float waterNoise(vec2 p){
+
+    float n = 0.0;
+
+    n +=
+        noise(p)
+        * .5;
+
+    n +=
+        noise(p*2.0)
+        * .25;
+
+    n +=
+        noise(p*4.0)
+        * .125;
+
+    n +=
+        noise(p*8.0)
+        * .0625;
+
+    return n;
+
+}
+
+
+/* MAIN */
+
+void main(){
+
+    vec2 uv =
+        gl_FragCoord.xy /
+        resolution.xy;
+
+    vec2 p =
+        uv-.5;
+
+    float aspect =
+        resolution.x /
+        resolution.y;
+
+    p.x *= aspect;
+
+
+    /* MOVING WATER */
+
+    vec2 flow =
+        p;
+
+    flow +=
+        vec2(
+            time*.018,
+            time*.010
+        );
+
+
+    float n1 =
+        waterNoise(
+            flow*2.7
+        );
+
+    float n2 =
+        waterNoise(
+            flow*6.0-
+            time*.025
+        );
+
+
+    /* MOUSE */
+
+    vec2 m =
+        mouse-.5;
+
+    m.x *= aspect;
+
+    float d =
+        distance(
+            p,
+            m
+        );
+
+
+    float waves =
+        sin(
+            d*75.0-
+            time*5.0
+        );
+
+
+    float falloff =
+        exp(
+            -d*7.0
+        );
+
+
+    float surface =
+        n1*.10+
+        n2*.035+
+        waves*
+        falloff*
+        .045;
+
+
+    /* NORMAL */
+
+    float sx =
+        waterNoise(
+            flow*2.7+
+            vec2(.012,0)
+        );
+
+    float sy =
+        waterNoise(
+            flow*2.7+
+            vec2(0,.012)
+        );
+
+
+    vec3 normal =
+        normalize(
+            vec3(
+                (n1-sx)*5.0,
+                (n1-sy)*5.0,
+                1.0
+            )
+        );
+
+
+    /* LIGHT */
+
+    vec3 light =
+        normalize(
+            vec3(
+                -.45,
+                -.6,
+                1.0
+            )
+        );
+
+
+    float diffuse =
+        max(
+            dot(
+                normal,
+                light
+            ),
+            0.0
+        );
+
+
+    /* COLORS */
+
+    vec3 dark =
+        vec3(
+            .005,
+            .20,
+            .42
+        );
+
+    vec3 mid =
+        vec3(
+            .01,
+            .48,
+            .72
+        );
+
+    vec3 lightBlue =
+        vec3(
+            .16,
+            .78,
+            .94
+        );
+
+
+    float depth =
+        smoothstep(
+            1.0,
+            0.0,
+            uv.y
+        );
+
+
+    vec3 color =
+        mix(
+            mid,
+            dark,
+            depth
+        );
+
+
+    color =
+        mix(
+            color,
+            lightBlue,
+            diffuse*.35
+        );
+
+
+    /* CAUSTICS */
+
+    float caustic =
+        sin(
+            n1*18.0+
+            time*.8
+        );
+
+
+    caustic =
+        smoothstep(
+            .65,
+            .95,
+            caustic
+        );
+
+
+    color +=
+        vec3(
+            .08,
+            .20,
+            .24
+        )*
+        caustic;
+
+
+    /* GLOSS */
+
+    float highlight =
+        pow(
+            max(
+                normal.z,
+                0.0
+            ),
+            9.0
+        );
+
+
+    color +=
+        vec3(
+            .20,
+            .45,
+            .55
+        )*
+        highlight*
+        .25;
+
+
+    /* MOUSE LIGHT */
+
+    float glow =
+        exp(
+            -d*5.0
+        );
+
+
+    color +=
+        vec3(
+            .08,
+            .18,
+            .25
+        )*
+        glow;
+
+
+    /* VIGNETTE */
+
+    float vignette =
+        smoothstep(
+            1.1,
+            .25,
+            length(
+                uv-.5
+            )
+        );
+
+
+    color *=
+        .82+
+        vignette*.18;
+
+
+    gl_FragColor =
+        vec4(
+            color,
+            1.0
+        );
+
+}
+
+`;
+
+
+/* ==================================================
+   SHADER COMPILER
+================================================== */
+
+function createShader(
+    type,
+    source
+){
+
+    const shader =
+        gl.createShader(
+            type
+        );
+
+    gl.shaderSource(
+        shader,
+        source
+    );
+
+    gl.compileShader(
+        shader
+    );
+
+    if(
+        !gl.getShaderParameter(
+            shader,
+            gl.COMPILE_STATUS
+        )
+    ){
+
+        console.error(
+            gl.getShaderInfoLog(
+                shader
+            )
+        );
+
+        throw new Error(
+            gl.getShaderInfoLog(
+                shader
+            )
+        );
+
+    }
+
+    return shader;
+}
+
+
+const vertexShader =
+    createShader(
+        gl.VERTEX_SHADER,
+        vertexSource
+    );
+
+const fragmentShader =
+    createShader(
+        gl.FRAGMENT_SHADER,
+        fragmentSource
+    );
+
+
+const program =
+    gl.createProgram();
+
+gl.attachShader(
+    program,
+    vertexShader
+);
+
+gl.attachShader(
+    program,
+    fragmentShader
+);
+
+gl.linkProgram(
+    program
+);
+
+gl.useProgram(
+    program
+);
+
+
+/* ==================================================
+   QUAD
+================================================== */
+
+const buffer =
+    gl.createBuffer();
+
+gl.bindBuffer(
+    gl.ARRAY_BUFFER,
+    buffer
+);
+
+gl.bufferData(
+    gl.ARRAY_BUFFER,
+
+    new Float32Array([
+        -1,-1,
+         1,-1,
+        -1, 1,
+
+        -1, 1,
+         1,-1,
+         1, 1
+    ]),
+
+    gl.STATIC_DRAW
+);
+
+
+const position =
+    gl.getAttribLocation(
+        program,
+        "position"
+    );
+
+gl.enableVertexAttribArray(
+    position
+);
+
+gl.vertexAttribPointer(
+    position,
+    2,
+    gl.FLOAT,
+    false,
+    0,
+    0
+);
+
+
+/* ==================================================
+   UNIFORMS
+================================================== */
+
+const resolution =
+    gl.getUniformLocation(
+        program,
+        "resolution"
+    );
+
+const mouseUniform =
+    gl.getUniformLocation(
+        program,
+        "mouse"
+    );
+
+const timeUniform =
+    gl.getUniformLocation(
+        program,
+        "time"
+    );
+
+
+/* ==================================================
+   MOUSE
+================================================== */
+
+let targetX = .5;
+let targetY = .5;
+
+let mouseX = .5;
+let mouseY = .5;
+
+
+window.addEventListener(
+    "mousemove",
+    e => {
+
+        targetX =
+            e.clientX /
+            window.innerWidth;
+
+        targetY =
+            1 -
+            e.clientY /
+            window.innerHeight;
+
+    }
+);
+
+
+/* ==================================================
+   TOUCH
+================================================== */
+
+window.addEventListener(
+    "touchmove",
+    e => {
+
+        const touch =
+            e.touches[0];
+
+        if(!touch)
+            return;
+
+        targetX =
+            touch.clientX /
+            window.innerWidth;
+
+        targetY =
+            1-
+            touch.clientY /
+            window.innerHeight;
+
+    },
+    {
+        passive:true
+    }
+);
+
+
+/* ==================================================
+   RESIZE
+================================================== */
+
+function resize(){
+
+    const dpr =
+        Math.min(
+            window.devicePixelRatio||1,
+            2
+        );
+
+    canvas.width =
+        innerWidth*dpr;
+
+    canvas.height =
+        innerHeight*dpr;
+
+    gl.viewport(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+}
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+resize();
+
+
+/* ==================================================
+   RENDER
+================================================== */
+
+const start =
+    performance.now();
+
+
+function render(now){
+
+    const elapsed =
+        (now-start)/1000;
+
+
+    mouseX +=
+        (
+            targetX-
+            mouseX
+        )*.06;
+
+
+    mouseY +=
+        (
+            targetY-
+            mouseY
+        )*.06;
+
+
+    gl.uniform2f(
+        resolution,
+        canvas.width,
+        canvas.height
+    );
+
+
+    gl.uniform2f(
+        mouseUniform,
+        mouseX,
+        mouseY
+    );
+
+
+    gl.uniform1f(
+        timeUniform,
+        elapsed
+    );
+
+
+    gl.drawArrays(
+        gl.TRIANGLES,
+        0,
+        6
+    );
+
+
+    requestAnimationFrame(
+        render
+    );
+
+}
+
+
+requestAnimationFrame(
+    render
+);
+
+</script>
+
+</body>
+</html>
+
 
 
 <!-- ======================================
