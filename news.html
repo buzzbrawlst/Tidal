@@ -1050,7 +1050,9 @@ let NEWS = [];
 
 async function fetchNews() {
     try {
-        const response = await fetch("https://tidal-backend-klp9.onrender.com/news");
+        const response = await fetch(
+            "https://tidal-backend-klp9.onrender.com/news"
+        );
 
         if (!response.ok) {
             throw new Error(`HTTP error: ${response.status}`);
@@ -1062,7 +1064,6 @@ async function fetchNews() {
         loadNewsCards();
 
     } catch (err) {
-
         console.error("Tidal News error:", err);
 
         document.getElementById("newsGrid").innerHTML = `
