@@ -1061,7 +1061,7 @@ async function fetchNews() {
         NEWS = await response.json();
 
         loadFeatured();
-        loadNewsCards();
+        loadNews();
 
     } catch (err) {
         console.error("Tidal News error:", err);
