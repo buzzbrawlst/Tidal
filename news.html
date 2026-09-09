@@ -1045,89 +1045,29 @@ document.getElementById(
 */
 
 
-const NEWS = [
+// News loaded from backend
+let NEWS = [];
 
-    {
+async function fetchNews() {
+    try {
+        const response = await fetch("http://localhost:3000/news");
 
-        title:
-            "Backend In Progress!!!",
+        NEWS = await response.json();
 
-        date:
-            "August 21, 2026",
+        loadFeatured();
+        loadNewsCards();
 
-        category:
-            "Announcement",
+    } catch (err) {
 
-        description:
-            "The Tidal Backend is currently in development and nearly ready for testing. Stay tuned for more information about the backend.",
+        console.error(err);
 
-        image:
-            "https://assetsio.gnwcdn.com/fortnite-chapter-2-season-3-a.jpg?width=1600&height=900&fit=crop&quality=100&format=png&enable=upscale&auto=png"
-
-    },
-
-    
-    {
-
-        title:
-            "Tidal Launcher is coming!",
-
-        date:
-            "August 20, 2026",
-
-        category:
-            "Launcher",
-
-        description:
-            "The Tidal Launcher is currently in development. Stay tuned for more information about the launcher and its upcoming features.",
-
-        image:
-            "https://www.gamepur.com/wp-content/uploads/2020/06/17044643/All-Named-Locations-Fortnite-Chapter-2-Season-3.jpg?resize=1536"
-
-    },
-
-
-    {
-
-        title:
-            "Welcome to Tidal",
-
-        date:
-            "August 20, 2026",
-
-        category:
-            "Project",
-
-        description:
-            "Welcome to the official Tidal website. This is where you can find project news, updates, downloads and more.",
-
-        image:
-            "https://tse3.mm.bing.net/th/id/OIP.5YBVuMvmGsopJSti61ZqYQHaC8?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
-
-    },
-
-
-    {
-
-        title:
-            "Website Launch",
-
-        date:
-            "August 20, 2026",
-
-        category:
-            "Website",
-
-        description:
-            "The official Tidal website is now live. More features and pages will be added as development continues.",
-
-        image:
-            "https://i0.wp.com/saiganak.com/wp-content/uploads/2020/06/fortnite-chapter2-season3-01.jpg"
-
+        document.getElementById("newsGrid").innerHTML = `
+            <div class="empty">
+                Unable to load Tidal News.
+            </div>
+        `;
     }
-
-
-];
+}
 
 
 
