@@ -1050,7 +1050,11 @@ let NEWS = [];
 
 async function fetchNews() {
     try {
-        const response = await fetch("http://localhost:3000/news");
+        const response = await fetch("https://api.tidal-dev.cc.cd/news");
+
+        if (!response.ok) {
+            throw new Error(`HTTP error: ${response.status}`);
+        }
 
         NEWS = await response.json();
 
@@ -1059,7 +1063,7 @@ async function fetchNews() {
 
     } catch (err) {
 
-        console.error(err);
+        console.error("Tidal News error:", err);
 
         document.getElementById("newsGrid").innerHTML = `
             <div class="empty">
