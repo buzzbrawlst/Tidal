@@ -152,26 +152,22 @@ a {
     background: rgba(255,255,255,.13);
 }
 
-.discord-btn {
+.discord-image-btn {
     display: flex;
     align-items: center;
-    gap: 8px;
-
-    padding: 11px 17px;
-    border-radius: 12px;
-
-    background: rgba(255,255,255,.17);
-    border: 1px solid rgba(255,255,255,.2);
-
-    font-size: 12px;
-    font-weight: 800;
-
-    transition: .2s;
+    justify-content: center;
+    transition: .25s ease;
 }
 
-.discord-btn:hover {
-    background: rgba(255,255,255,.28);
-    transform: translateY(-2px);
+.discord-image-btn img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    display: block;
+}
+
+.discord-image-btn:hover {
+    transform: translateY(-3px) scale(1.08);
 }
 
 /* =========================================
@@ -858,9 +854,12 @@ footer {
         <a href="downloads.html">Downloads</a>
     </div>
 
-    <a class="discord-btn" id="nav-discord" href="https://discord.gg/jgsGPgz7y4" target="https://discord.gg/Wf7FmRxwPj" rel="noopener">
-        💬 Discord
-    </a>
+   <a class="discord-image-btn"
+   href="https://discord.gg/jgsGPgz7y4"
+   target="_blank"
+   rel="noopener">
+    <img src="https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/discord.png?raw=true" alt="Join Discord">
+</a>
 
 </nav>
 
