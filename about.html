@@ -1,855 +1,1913 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Tidal</title>
+<link rel="icon" href="favicon.ico">
 
-<title>About Tidal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
-
-*{
-    box-sizing:border-box;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-html,
-body{
-    margin:0;
-    width:100%;
-    min-height:100%;
-    font-family:
-        Inter,
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        sans-serif;
-    color:white;
-    background:
-        linear-gradient(
-            180deg,
-            #004f7d,
-            #002d4d 55%,
-            #001d32
-        );
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100%;
+    background: transparent;
+    color: white;
+    font-family: Inter, Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
 }
 
 /* =========================================
-   NAVBAR
+   ORIGINAL WATER CANVAS
+   DO NOT ADD AN OVERLAY ABOVE THIS
 ========================================= */
 
-.navbar{
-    position:fixed;
+#water {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: -1;
+    pointer-events: none;
+}
 
-    top:18px;
-    left:50%;
+/* =========================================
+   FLOATING GLASS NAVBAR
+========================================= */
 
-    transform:translateX(-50%);
+.navbar {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
 
-    width:min(1100px, calc(100% - 36px));
-    height:64px;
+    width: min(1100px, calc(100% - 36px));
+    height: 64px;
 
-    z-index:50;
+    z-index: 20;
 
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-    padding:0 22px;
+    padding: 0 22px;
 
-    border-radius:20px;
+    border-radius: 20px;
 
-    background:rgba(255,255,255,.10);
+    background: rgba(255,255,255,.10);
 
-    border:
-        1px solid
-        rgba(255,255,255,.18);
+    border: 1px solid rgba(255,255,255,.18);
 
-    backdrop-filter:
-        blur(25px)
-        saturate(140%);
-
-    -webkit-backdrop-filter:
-        blur(25px)
-        saturate(140%);
+    backdrop-filter: blur(25px) saturate(140%);
+    -webkit-backdrop-filter: blur(25px) saturate(140%);
 
     box-shadow:
-        0 15px 45px
-        rgba(0,35,70,.25),
+        0 15px 45px rgba(0,35,70,.20),
+        inset 0 1px 0 rgba(255,255,255,.18);
 
-        inset 0 1px 0
-        rgba(255,255,255,.18);
-
-    animation:
-        navIn .7s
-        cubic-bezier(.2,.8,.2,1);
+    animation: navIn .7s cubic-bezier(.2,.8,.2,1);
 }
 
-@keyframes navIn{
-
-    from{
-        opacity:0;
-        transform:
-            translateX(-50%)
-            translateY(-15px);
+@keyframes navIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-15px);
     }
 
-    to{
-        opacity:1;
-        transform:
-            translateX(-50%)
-            translateY(0);
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 }
 
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-/* LOGO */
-
-.nav-logo{
-
-    display:flex;
-    align-items:center;
-
-    gap:10px;
-
-    color:white;
-
-    text-decoration:none;
-
-    font-size:18px;
-    font-weight:800;
-
-    letter-spacing:-.5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -.5px;
 }
 
-.nav-logo img{
-
-    width:34px;
-    height:34px;
-
-    object-fit:contain;
-
-    border-radius:10px;
-
-    filter:
-        drop-shadow(
-            0 5px 10px
-            rgba(0,0,0,.2)
-        );
-
-    transition:.25s ease;
+.nav-logo img {
+    width: 34px;
+    height: 34px;
+    object-fit: contain;
+    border-radius: 10px;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,.2));
+    transition: .25s ease;
 }
 
-.nav-logo:hover img{
-
-    transform:
-        rotate(-5deg)
-        scale(1.08);
+.nav-logo:hover img {
+    transform: rotate(-5deg) scale(1.08);
 }
 
-
-/* LINKS */
-
-.nav-links{
-
-    display:flex;
-    align-items:center;
-
-    gap:6px;
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.nav-links a{
+.nav-links a {
+    position: relative;
+    padding: 9px 14px;
+    border-radius: 12px;
 
-    padding:
-        9px 14px;
+    color: rgba(255,255,255,.82);
+    font-size: 14px;
+    font-weight: 600;
 
-    border-radius:12px;
-
-    color:
-        rgba(255,255,255,.72);
-
-    text-decoration:none;
-
-    font-size:14px;
-
-    font-weight:600;
-
-    transition:
-        .2s ease;
+    transition: .2s ease;
 }
 
-.nav-links a:hover{
-
-    color:white;
-
-    background:
-        rgba(255,255,255,.10);
-
-    transform:
-        translateY(-1px);
+.nav-links a:hover {
+    color: white;
+    background: rgba(255,255,255,.10);
+    transform: translateY(-1px);
 }
 
+.nav-links a.active {
+    color: white;
+    background: rgba(255,255,255,.13);
+}
+
+.discord-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 11px 17px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,.17);
+    border: 1px solid rgba(255,255,255,.2);
+
+    font-size: 12px;
+    font-weight: 800;
+
+    transition: .2s;
+}
+
+.discord-btn:hover {
+    background: rgba(255,255,255,.28);
+    transform: translateY(-2px);
+}
 
 /* =========================================
-   BACKGROUND
+   GENERAL
 ========================================= */
 
-.background{
-
-    position:fixed;
-
-    inset:0;
-
-    overflow:hidden;
-
-    pointer-events:none;
-
-    z-index:0;
+.section-container {
+    width: min(1150px, calc(100% - 60px));
+    margin: auto;
 }
 
-.glow{
-
-    position:absolute;
-
-    width:600px;
-    height:600px;
-
-    border-radius:50%;
-
-    background:
-        rgba(0,180,255,.12);
-
-    filter:blur(100px);
-
-    top:-250px;
-    left:50%;
-
-    transform:
-        translateX(-50%);
+.eyebrow {
+    display: inline-block;
+    color: #c6f3ff;
+    font-size: 11px;
+    font-weight: 850;
+    letter-spacing: 3px;
+    margin-bottom: 22px;
+    text-transform: uppercase;
 }
 
-
-/* =========================================
-   PAGE
-========================================= */
-
-.page{
-
-    position:relative;
-
-    z-index:2;
-
-    width:100%;
-
-    min-height:100vh;
-
-    padding:
-        145px 25px 70px;
+.section-title {
+    font-size: clamp(38px, 5vw, 60px);
+    line-height: 1;
+    letter-spacing: -3px;
+    font-weight: 900;
+    margin-bottom: 25px;
 }
 
+.section-description {
+    color: rgba(255,255,255,.88);
+    font-size: 14px;
+    line-height: 1.9;
+    max-width: 650px;
+}
 
 /* =========================================
    HERO
 ========================================= */
 
-.hero{
+.hero {
+    min-height: 790px;
+    min-height: 100svh;
 
-    width:min(900px, 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    margin:
-        0 auto 35px;
+    text-align: center;
 
-    text-align:center;
+    position: relative;
+    isolation: isolate;
+
+    padding: 150px 30px 100px;
+    overflow: hidden;
 }
 
-.hero-logo{
-
-    width:90px;
-    height:90px;
-
-    object-fit:contain;
-
-    border-radius:24px;
-
-    margin-bottom:25px;
-
-    filter:
-        drop-shadow(
-            0 15px 30px
-            rgba(0,0,0,.25)
-        );
+.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: .25;
+    pointer-events: none;
 }
 
-.hero h1{
-
-    margin:0;
-
-    font-size:
-        clamp(
-            42px,
-            7vw,
-            72px
-        );
-
-    font-weight:900;
-
-    letter-spacing:-3px;
+.hero-content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
 }
 
-.hero h1 span{
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 
-    color:
-        #71d8ff;
+    padding: 10px 16px;
+
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,.3);
+
+    background: rgba(255,255,255,.12);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 2px;
+
+    box-shadow: 0 8px 30px rgba(0,30,60,.12);
 }
 
-.hero p{
-
-    max-width:650px;
-
-    margin:
-        20px auto 0;
-
-    color:
-        rgba(255,255,255,.68);
-
-    font-size:17px;
-
-    line-height:1.7;
+.hero-badge::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: #a7f0ff;
+    border-radius: 50%;
+    box-shadow: 0 0 14px #a7f0ff;
 }
 
+.hero h1 {
+    margin-top: 35px;
+
+    font-size: clamp(65px, 10vw, 125px);
+    line-height: .91;
+
+    letter-spacing: -8px;
+    font-weight: 900;
+
+    color: white;
+
+    filter: drop-shadow(0 5px 12px rgba(0,20,50,.2));
+}
+
+.gradient-text {
+    background: linear-gradient(
+        90deg,
+        #ffffff,
+        #b8f0ff,
+        #e0e9ff
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-description {
+    max-width: 590px;
+    margin: 30px auto 0;
+
+    color: rgba(255,255,255,.92);
+    font-size: 15px;
+    line-height: 1.9;
+
+    text-shadow: 0 2px 8px rgba(0,25,50,.25);
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+}
+
+.primary-btn,
+.secondary-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 14px 23px;
+    border-radius: 12px;
+
+    font-size: 13px;
+    font-weight: 850;
+
+    transition: .25s;
+}
+
+.primary-btn {
+    background: white;
+    color: #075077;
+    box-shadow: 0 8px 25px rgba(0,30,60,.16);
+}
+
+.secondary-btn {
+    color: white;
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.3);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.primary-btn:hover,
+.secondary-btn:hover {
+    transform: translateY(-4px);
+}
 
 /* =========================================
-   CONTENT GRID
+   GLASS INFO STRIP
 ========================================= */
 
-.content{
+.info-strip {
+    width: min(1100px, calc(100% - 60px));
+    margin: -45px auto 0;
 
-    width:min(1000px, 100%);
+    position: relative;
+    z-index: 3;
 
-    margin:auto;
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
 
-    display:grid;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 22px;
 
-    grid-template-columns:
-        repeat(2, 1fr);
+    background: rgba(255,255,255,.13);
 
-    gap:18px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    box-shadow: 0 15px 45px rgba(0,30,60,.13);
 }
 
+.info-item {
+    padding: 27px 30px;
+}
+
+.info-item + .info-item {
+    border-left: 1px solid rgba(255,255,255,.2);
+}
+
+.info-item h3 {
+    font-size: 15px;
+    margin-bottom: 9px;
+}
+
+.info-item p {
+    font-size: 11px;
+    line-height: 1.8;
+    color: rgba(255,255,255,.84);
+}
 
 /* =========================================
-   CARDS
+   ABOUT SECTION
 ========================================= */
 
-.card{
-
-    padding:30px;
-
-    border-radius:24px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.06)
-        );
-
-    border:
-        1px solid
-        rgba(255,255,255,.15);
-
-    backdrop-filter:
-        blur(25px)
-        saturate(140%);
-
-    -webkit-backdrop-filter:
-        blur(25px)
-        saturate(140%);
-
-    box-shadow:
-        0 20px 60px
-        rgba(0,25,50,.18),
-
-        inset 0 1px 0
-        rgba(255,255,255,.15);
-
-    transition:
-        transform .25s ease,
-        background .25s ease;
+.about-section {
+    padding: 145px 0 90px;
 }
 
-.card:hover{
-
-    transform:
-        translateY(-5px);
-
-    background:
-        rgba(255,255,255,.12);
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 75px;
 }
 
-.card.full{
-
-    grid-column:
-        1 / -1;
+.about-copy p {
+    color: rgba(255,255,255,.88);
+    font-size: 13px;
+    line-height: 2;
+    margin-bottom: 17px;
 }
 
-.card h2{
+.about-visual {
+    min-height: 420px;
 
-    margin:
-        0 0 12px;
+    position: relative;
+    overflow: hidden;
 
-    font-size:22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    font-weight:800;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,.28);
+
+    background: rgba(255,255,255,.12);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 20px 55px rgba(0,35,70,.15);
 }
 
-.card p{
+.about-visual img {
+    position: absolute;
+    inset: 0;
 
-    margin:0;
+    width: 100%;
+    height: 100%;
 
-    color:
-        rgba(255,255,255,.65);
-
-    font-size:15px;
-
-    line-height:1.7;
+    object-fit: cover;
+    opacity: .65;
 }
 
+.visual-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 30px;
+
+    text-shadow: 0 2px 12px rgba(0,20,50,.4);
+}
+
+.visual-content h2 {
+    font-size: 75px;
+    font-weight: 900;
+    letter-spacing: -6px;
+}
+
+.visual-content p {
+    margin-top: 12px;
+    font-size: 10px;
+    letter-spacing: 4px;
+    font-weight: 850;
+}
 
 /* =========================================
-   FEATURE LIST
+   PURPOSE SECTION
 ========================================= */
 
-.features{
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
-    gap:12px;
-
-    margin-top:20px;
+.purpose-section {
+    padding: 90px 0;
 }
 
-.feature{
-
-    padding:18px;
-
-    border-radius:16px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    border:
-        1px solid
-        rgba(255,255,255,.09);
+.center-heading {
+    text-align: center;
+    margin-bottom: 55px;
 }
 
-.feature strong{
-
-    display:block;
-
-    margin-bottom:5px;
-
-    font-size:14px;
+.center-heading .section-description {
+    margin: auto;
 }
 
-.feature span{
-
-    color:
-        rgba(255,255,255,.55);
-
-    font-size:12px;
+.purpose-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 18px;
 }
 
+.purpose-card {
+    min-height: 240px;
+    padding: 30px;
+
+    border-radius: 22px;
+    border: 1px solid rgba(255,255,255,.25);
+
+    background: rgba(255,255,255,.13);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 12px 35px rgba(0,35,70,.10);
+
+    transition: .3s;
+}
+
+.purpose-card:hover {
+    transform: translateY(-7px);
+    background: rgba(255,255,255,.2);
+    border-color: rgba(255,255,255,.4);
+}
+
+.card-number {
+    color: #d3f6ff;
+    font-size: 10px;
+    font-weight: 850;
+    letter-spacing: 2px;
+    margin-bottom: 35px;
+}
+
+.purpose-card h3 {
+    font-size: 18px;
+    margin-bottom: 13px;
+}
+
+.purpose-card p {
+    color: rgba(255,255,255,.86);
+    font-size: 12px;
+    line-height: 1.9;
+}
 
 /* =========================================
-   WARNING
+   ROADMAP
 ========================================= */
 
-.notice{
-
-    margin-top:20px;
-
-    padding:18px;
-
-    border-radius:16px;
-
-    background:
-        rgba(0,140,210,.12);
-
-    border:
-        1px solid
-        rgba(100,210,255,.16);
-
-    color:
-        rgba(255,255,255,.62);
-
-    font-size:13px;
-
-    line-height:1.6;
+.roadmap-section {
+    padding: 90px 0;
 }
 
+.roadmap-header {
+    margin-bottom: 50px;
+}
+
+.roadmap-list {
+    max-width: 850px;
+    margin-left: auto;
+}
+
+.roadmap-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 25px;
+
+    padding: 27px 0;
+
+    border-top: 1px solid rgba(255,255,255,.25);
+}
+
+.roadmap-number {
+    color: #d3f6ff;
+    font-size: 11px;
+    font-weight: 850;
+}
+
+.roadmap-item h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.roadmap-item p {
+    color: rgba(255,255,255,.85);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+/* =========================================
+   COMMUNITY
+========================================= */
+
+.community-section {
+    padding: 90px 0 120px;
+}
+
+.community-box {
+    min-height: 350px;
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    padding: 60px;
+
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,.3);
+
+    background: rgba(255,255,255,.14);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 20px 60px rgba(0,35,70,.14);
+}
+
+.community-image {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    opacity: .3;
+}
+
+.community-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+}
+
+.community-content h2 {
+    font-size: clamp(36px,5vw,58px);
+    letter-spacing: -3px;
+    font-weight: 900;
+    margin-bottom: 20px;
+}
+
+.community-content p {
+    color: rgba(255,255,255,.9);
+    font-size: 13px;
+    line-height: 1.9;
+    margin-bottom: 27px;
+}
 
 /* =========================================
    FOOTER
 ========================================= */
 
-.footer{
+footer {
+    padding: 30px 6%;
 
-    width:min(1000px,100%);
+    border-top: 1px solid rgba(255,255,255,.2);
 
-    margin:
-        35px auto 0;
+    background: rgba(255,255,255,.09);
 
-    text-align:center;
-
-    color:
-        rgba(255,255,255,.35);
-
-    font-size:12px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 }
 
+.footer-inner {
+    max-width: 1150px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-logo {
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.footer-copy {
+    color: rgba(255,255,255,.8);
+    font-size: 11px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: rgba(255,255,255,.8);
+    font-size: 11px;
+    transition: .2s;
+}
+
+.footer-links a:hover {
+    color: white;
+}
 
 /* =========================================
-   MOBILE
+   ANIMATIONS
 ========================================= */
 
-@media(max-width:650px){
-
-    .navbar{
-
-        width:
-            calc(100% - 24px);
-
-        top:12px;
-
-        height:58px;
-
-        padding:
-            0 15px;
-    }
-
-    .nav-logo span{
-        display:none;
-    }
-
-    .nav-links{
-        gap:2px;
-    }
-
-    .nav-links a{
-
-        padding:
-            8px 9px;
-
-        font-size:12px;
-    }
-
-    .page{
-
-        padding:
-            110px 16px 50px;
-    }
-
-    .hero h1{
-
-        letter-spacing:-2px;
-    }
-
-    .hero p{
-
-        font-size:14px;
-    }
-
-    .content{
-
-        grid-template-columns:
-            1fr;
-    }
-
-    .card.full{
-
-        grid-column:auto;
-    }
-
-    .features{
-
-        grid-template-columns:
-            1fr;
-    }
-
+.reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .8s ease, transform .8s ease;
 }
 
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media(max-width:850px) {
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links a {
+        padding: 9px 8px;
+        font-size: 12px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .purpose-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item {
+        padding: 22px 18px;
+    }
+}
+
+@media(max-width:600px) {
+    .navbar {
+        padding: 0 14px;
+        height: 58px;
+    }
+
+    .nav-logo {
+        font-size: 16px;
+    }
+
+    .nav-links {
+        gap: 0;
+    }
+
+    .nav-links a {
+        padding: 8px 6px;
+        font-size: 10px;
+    }
+
+    .discord-btn {
+        display: none;
+    }
+
+    .hero {
+        min-height: 760px;
+        padding: 130px 22px 90px;
+    }
+
+    .hero h1 {
+        font-size: 65px;
+        letter-spacing: -4px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        max-width: 280px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .section-container {
+        width: calc(100% - 40px);
+    }
+
+    .info-strip {
+        width: calc(100% - 40px);
+        grid-template-columns: 1fr;
+    }
+
+    .info-item + .info-item {
+        border-left: none;
+        border-top: 1px solid rgba(255,255,255,.2);
+    }
+
+    .about-section {
+        padding-top: 100px;
+    }
+
+    .about-visual {
+        min-height: 300px;
+    }
+
+    .community-box {
+        padding: 32px;
+    }
+
+    .roadmap-item {
+        grid-template-columns: 65px 1fr;
+        gap: 12px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<!-- ======================================
-     NAVBAR
-====================================== -->
+<!-- ORIGINAL WATER CANVAS -->
+<canvas id="water"></canvas>
 
+<!-- NAVBAR -->
 <nav class="navbar">
 
-    <a href="index.html" class="nav-logo">
-
-        <img
-            src="https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Tidal.png?raw=true"
-            alt="Tidal"
-        >
-
-        <span>Tidal</span>
-
+    <a href="index.html" class="nav-logo" id="nav-brand">
+        Tidal
     </a>
 
-
     <div class="nav-links">
-
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="download.html">
-            Download
-        </a>
-
-        <a href="about.html">
-            About
-        </a>
-
-          <a href="news.html">
-            News
-        </a>
-
-        <a
-            href="https://discord.com/"
-            target="_blank"
-        >
-            Discord
-        </a>
-
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="news.html">News</a>
+        <a href="downloads.html">Downloads</a>
     </div>
+
+    <a class="discord-btn" id="nav-discord" href="https://discord.gg/jgsGPgz7y4" target="_blank" rel="noopener">
+        💬 Discord
+    </a>
 
 </nav>
 
+<!-- HERO -->
+<section class="hero">
 
-<!-- ======================================
-     BACKGROUND
-====================================== -->
+    <img class="hero-image" id="hero-image" alt="" aria-hidden="true">
 
-<div class="background">
+    <div class="hero-content">
 
-    <div class="glow"></div>
+        <div class="hero-badge" id="hero-label">
+            GET TO KNOW TIDAL
+        </div>
+
+        <h1 id="hero-title">
+            MORE THAN<br>
+            <span class="gradient-text">A PROJECT.</span>
+        </h1>
+
+        <p class="hero-description" id="hero-description">
+            Tidal is a community-driven project focused on bringing together
+            launcher development, accessible builds and a shared community experience.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#about" class="primary-btn" id="hero-primary">
+                Discover Tidal ↗
+            </a>
+
+            <a href="https://discord.gg/jgsGPgz7y4" class="secondary-btn" id="hero-secondary" target="_blank" rel="noopener">
+                Join the community
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+
+    <div class="info-item">
+        <h3 id="info-one-title">Community driven</h3>
+        <p id="info-one-text">Built around the people who use, support and contribute to the project.</p>
+    </div>
+
+    <div class="info-item">
+        <h3 id="info-two-title">Always evolving</h3>
+        <p id="info-two-text">An ongoing project with room to improve, experiment and grow.</p>
+    </div>
+
+    <div class="info-item">
+        <h3 id="info-three-title">Made with purpose</h3>
+        <p id="info-three-text">Focused on creating a clear, accessible and enjoyable experience.</p>
+    </div>
 
 </div>
 
+<!-- ABOUT -->
+<section class="about-section" id="about">
 
-<!-- ======================================
-     PAGE
-====================================== -->
+    <div class="section-container about-grid">
 
-<main class="page">
+        <div class="about-copy reveal">
 
+            <div class="eyebrow" id="about-eyebrow">01 / WHO WE ARE</div>
 
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <img
-            class="hero-logo"
-            src="https://github.com/buzzbrawlst/Downloads.Tidal/blob/main/Images/Tidal.png?raw=true"
-            alt="Tidal"
-        >
-
-        <h1>
-            About <span>Tidal</span>
-        </h1>
-
-        <p>
-            Tidal is an OGFN project focused on bringing back
-            the classic Fortnite experience while building a
-            modern, simple and polished way to access it.
-        </p>
-
-    </section>
-
-
-    <!-- CONTENT -->
-
-    <section class="content">
-
-
-        <!-- ABOUT -->
-
-        <div class="card full">
-
-            <h2>
-                What is Tidal?
+            <h2 class="section-title" id="about-title">
+                Introducing Tidal.
             </h2>
 
-            <p>
-                Tidal is a community-driven OGFN project
-                designed around the classic Fortnite experience.
-                The goal is to create a clean ecosystem where
-                players can access the project through a dedicated
-                launcher, manage their installations and eventually
-                connect to the Tidal game environment.
+            <p id="about-paragraph-one">
+                Tidal is a project built around the idea of bringing people together
+                through software, community and shared experiences. It aims to create
+                a straightforward place to discover updates, access project resources
+                and stay connected.
+            </p>
+
+            <p id="about-paragraph-two">
+                The project is continuously being developed. New ideas, improvements
+                and features are part of its journey, with community feedback helping
+                shape what comes next.
+            </p>
+
+            <p id="about-paragraph-three">
+                Whether you're discovering Tidal for the first time or have been
+                following its development, you're part of the experience.
             </p>
 
         </div>
 
+        <div class="about-visual reveal" id="about-visual">
 
-        <!-- VISION -->
+            <div class="visual-content">
+                <h2 id="visual-title">TIDAL</h2>
+                <p id="visual-subtitle">BUILT TO EVOLVE</p>
+            </div>
 
-        <div class="card">
+        </div>
 
-            <h2>
-                Our Goal
+    </div>
+
+</section>
+
+<!-- PURPOSE -->
+<section class="purpose-section">
+
+    <div class="section-container">
+
+        <div class="center-heading reveal">
+
+            <div class="eyebrow" id="purpose-eyebrow">02 / WHAT MATTERS</div>
+
+            <h2 class="section-title" id="purpose-title">
+                The ideas behind Tidal.
             </h2>
 
-            <p>
-                We're aiming to make the experience feel
-                straightforward from the moment you visit the
-                website to the moment you launch the game.
-                No unnecessary clutter — just a clean launcher,
-                simple downloads and the OG experience.
+            <p class="section-description" id="purpose-description">
+                The project is guided by a few simple principles that influence
+                how it is developed and where it goes next.
             </p>
 
         </div>
 
+        <div class="purpose-grid">
 
-        <!-- COMMUNITY -->
+            <div class="purpose-card reveal">
+                <div class="card-number">01 — COMMUNITY</div>
+                <h3 id="purpose-one-title">People first.</h3>
+                <p id="purpose-one-text">
+                    A project should be shaped by the people who use it.
+                    Feedback and community involvement help guide development.
+                </p>
+            </div>
 
-        <div class="card">
+            <div class="purpose-card reveal">
+                <div class="card-number">02 — DEVELOPMENT</div>
+                <h3 id="purpose-two-title">Keep improving.</h3>
+                <p id="purpose-two-text">
+                    Development is an ongoing process. Ideas can change,
+                    features can improve and there is always room to build further.
+                </p>
+            </div>
 
-            <h2>
-                Community
+            <div class="purpose-card reveal">
+                <div class="card-number">03 — EXPERIENCE</div>
+                <h3 id="purpose-three-title">Make it accessible.</h3>
+                <p id="purpose-three-text">
+                    Clear navigation, useful information and a consistent
+                    experience should make the project easy to explore.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap-section">
+
+    <div class="section-container">
+
+        <div class="roadmap-header reveal">
+
+            <div class="eyebrow" id="roadmap-eyebrow">03 / LOOKING AHEAD</div>
+
+            <h2 class="section-title" id="roadmap-title">
+                Where we're heading.
             </h2>
 
-            <p>
-                Tidal is built with the community in mind.
-                The project is intended to grow alongside its
-                players, with new features, improvements and
-                experiences being added over time.
+            <p class="section-description" id="roadmap-description">
+                Tidal is an evolving project. These are areas of development
+                that help describe the direction we're working towards.
             </p>
 
         </div>
 
+        <div class="roadmap-list">
 
-        <!-- FEATURES -->
-
-        <div class="card full">
-
-            <h2>
-                What Tidal is building
-            </h2>
-
-            <div class="features">
-
-                <div class="feature">
-
-                    <strong>
-                        🌊 Tidal Launcher
-                    </strong>
-
-                    <span>
-                        A dedicated launcher for managing
-                        and starting the project.
-                    </span>
-
+            <div class="roadmap-item reveal">
+                <div class="roadmap-number">01 / NOW</div>
+                <div>
+                    <h3 id="roadmap-one-title">Building the foundations</h3>
+                    <p id="roadmap-one-text">
+                        Developing the core experience, improving the interface
+                        and making the project easier to navigate.
+                    </p>
                 </div>
+            </div>
 
-
-                <div class="feature">
-
-                    <strong>
-                        ⚡ Simple Installation
-                    </strong>
-
-                    <span>
-                        An easy way to get the required
-                        files and installations.
-                    </span>
-
+            <div class="roadmap-item reveal">
+                <div class="roadmap-number">02 / NEXT</div>
+                <div>
+                    <h3 id="roadmap-two-title">Expanding the experience</h3>
+                    <p id="roadmap-two-text">
+                        Exploring new features, improving existing systems
+                        and making more resources available.
+                    </p>
                 </div>
+            </div>
 
-
-                <div class="feature">
-
-                    <strong>
-                        🎮 OG Fortnite Experience
-                    </strong>
-
-                    <span>
-                        Built around the classic Fortnite
-                        experience and its gameplay.
-                    </span>
-
+            <div class="roadmap-item reveal">
+                <div class="roadmap-number">03 / FUTURE</div>
+                <div>
+                    <h3 id="roadmap-three-title">Growing together</h3>
+                    <p id="roadmap-three-text">
+                        Continuing to develop Tidal alongside its community
+                        and exploring what the project could become.
+                    </p>
                 </div>
+            </div>
 
+        </div>
 
-                <div class="feature">
+    </div>
 
-                    <strong>
-                        🔧 Constant Development
-                    </strong>
+</section>
 
-                    <span>
-                        The project can continue evolving
-                        with new systems and improvements.
-                    </span>
+<!-- COMMUNITY -->
+<section class="community-section">
 
-                </div>
+    <div class="section-container">
+
+        <div class="community-box reveal">
+
+            <img class="community-image" id="community-image" alt="" aria-hidden="true">
+
+            <div class="community-content">
+
+                <div class="eyebrow" id="community-eyebrow">04 / BE PART OF IT</div>
+
+                <h2 id="community-title">
+                    The project is better together.
+                </h2>
+
+                <p id="community-description">
+                    Follow development, keep up with announcements and
+                    connect with the Tidal community.
+                </p>
+
+                <a href="https://discord.gg/jgsGPgz7y4" class="primary-btn" id="community-button" target="_blank" rel="noopener">
+                    Join the Discord ↗
+                </a>
 
             </div>
 
         </div>
 
+    </div>
 
-        <!-- STATUS -->
+</section>
 
-        <div class="card full">
+<!-- FOOTER -->
+<footer>
 
-            <h2>
-                Project Status
-            </h2>
+    <div class="footer-inner">
 
-            <p>
-                Tidal is currently in development. Some features
-                may not be available yet while the launcher,
-                backend and game infrastructure are being built.
-                More functionality will be introduced as the
-                project develops.
-            </p>
+        <div class="footer-logo" id="footer-brand">Tidal</div>
 
-            <div class="notice">
-
-                <strong>
-                    🚧 Tidal is a work in progress.
-                </strong>
-
-                <br>
-
-                Features and availability may change as
-                development continues.
-
-            </div>
-
+        <div class="footer-copy" id="footer-copy">
+            © 2026 Tidal. All rights reserved.
         </div>
 
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="news.html">News</a>
+            <a href="downloads.html">Downloads</a>
+        </div>
 
-    </section>
+    </div>
+
+</footer>
+
+<!-- =========================================
+     TIDAL CONFIGURATION
+     EDIT YOUR IMAGES AND TEXT HERE
+========================================= -->
+
+<script>
+
+const TIDAL_CONFIG = {
+
+    brand: "Tidal",
+
+    images: {
+        hero: "https://metro.co.uk/wp-content/uploads/2020/06/EZaqbMdXgAA0-J-11a8.jpg?quality=90&strip=all&w=646",
+        about: "https://static.wikia.nocookie.net/fortnite/images/8/85/Chapter_2_Season_3_-_Key_Art_-_Fortnite.jpeg/revision/latest/scale-to-width-down/1200?cb=20200617084157",
+        community: "https://static0.srcdn.com/wordpress/wp-content/uploads/2020/06/Fortnite-season-3-bosses.jpg"
+    },
+
+    hero: {
+        label: "GET TO KNOW TIDAL",
+        title: 'MORE THAN<br><span class="gradient-text">A PROJECT.</span>',
+        description: "Tidal is a community-driven project focused on bringing together launcher development, accessible builds and a shared community experience.",
+        primary: "Discover Tidal ↗",
+        secondary: "Join the community"
+    },
+
+    info: {
+        oneTitle: "Community driven",
+        oneText: "Built around the people who use, support and contribute to the project.",
+
+        twoTitle: "Always evolving",
+        twoText: "An ongoing project with room to improve, experiment and grow.",
+
+        threeTitle: "Made with purpose",
+        threeText: "Focused on creating a clear, accessible and enjoyable experience."
+    },
+
+    about: {
+        eyebrow: "01 / WHO WE ARE",
+        title: "Introducing Tidal.",
+        paragraphOne: "Tidal is a project built around the idea of bringing people together through software, community and shared experiences. It aims to create a straightforward place to discover updates, access project resources and stay connected.",
+        paragraphTwo: "The project is continuously being developed. New ideas, improvements and features are part of its journey, with community feedback helping shape what comes next.",
+        paragraphThree: "Whether you're discovering Tidal for the first time or have been following its development, you're part of the experience.",
+        visualTitle: "TIDAL",
+        visualSubtitle: "BUILT TO EVOLVE"
+    },
+
+    purpose: {
+        eyebrow: "02 / WHAT MATTERS",
+        title: "The ideas behind Tidal.",
+        description: "The project is guided by a few simple principles that influence how it is developed and where it goes next.",
+
+        oneTitle: "People first.",
+        oneText: "A project should be shaped by the people who use it. Feedback and community involvement help guide development.",
+
+        twoTitle: "Keep improving.",
+        twoText: "Development is an ongoing process. Ideas can change, features can improve and there is always room to build further.",
+
+        threeTitle: "Make it accessible.",
+        threeText: "Clear navigation, useful information and a consistent experience should make the project easy to explore."
+    },
+
+    roadmap: {
+        eyebrow: "03 / LOOKING AHEAD",
+        title: "Where we're heading.",
+        description: "Tidal is an evolving project. These are areas of development that help describe the direction we're working towards.",
+
+        oneTitle: "Building the foundations",
+        oneText: "Developing the core experience, improving the interface and making the project easier to navigate.",
+
+        twoTitle: "Expanding the experience",
+        twoText: "Exploring new features, improving existing systems and making more resources available.",
+
+        threeTitle: "Growing together",
+        threeText: "Continuing to develop Tidal alongside its community and exploring what the project could become."
+    },
+
+    community: {
+        eyebrow: "04 / BE PART OF IT",
+        title: "The project is better together.",
+        description: "Follow development, keep up with announcements and connect with the Tidal community.",
+        button: "Join the Discord ↗"
+    },
+
+    links: {
+        discord: "https://discord.gg/jgsGPgz7y4"
+    }
+
+};
 
 
-    <footer class="footer">
+/* =========================================
+   APPLY CONFIGURATION
+========================================= */
 
-        Tidal • OGFN Project
+function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element && value !== undefined) {
+        element.textContent = value;
+    }
+}
 
-    </footer>
+function setHTML(id, value) {
+    const element = document.getElementById(id);
+    if (element && value !== undefined) {
+        element.innerHTML = value;
+    }
+}
 
+function setImage(id, url) {
+    const element = document.getElementById(id);
 
-</main>
+    if (!element) return;
+
+    if (url && url.trim()) {
+        element.src = url;
+        element.style.display = "block";
+    } else {
+        element.removeAttribute("src");
+        element.style.display = "none";
+    }
+}
+
+function applyTidalConfig() {
+
+    const c = TIDAL_CONFIG;
+
+    setText("nav-brand", c.brand);
+    setText("footer-brand", c.brand);
+    setText("footer-copy", `© ${new Date().getFullYear()} ${c.brand}. All rights reserved.`);
+
+    /* HERO */
+
+    setText("hero-label", c.hero.label);
+    setHTML("hero-title", c.hero.title);
+    setText("hero-description", c.hero.description);
+    setText("hero-primary", c.hero.primary);
+    setText("hero-secondary", c.hero.secondary);
+
+    /* IMAGES */
+
+    setImage("hero-image", c.images.hero);
+    setImage("community-image", c.images.community);
+
+    const aboutVisual = document.getElementById("about-visual");
+
+    if (aboutVisual) {
+        if (c.images.about && c.images.about.trim()) {
+            aboutVisual.style.backgroundImage = `url("${c.images.about.replace(/"/g, '\\"')}")`;
+            aboutVisual.style.backgroundSize = "cover";
+            aboutVisual.style.backgroundPosition = "center";
+        } else {
+            aboutVisual.style.backgroundImage = "none";
+        }
+    }
+
+    /* INFO STRIP */
+
+    ["one", "two", "three"].forEach(key => {
+        setText(`info-${key}-title`, c.info[`${key}Title`]);
+        setText(`info-${key}-text`, c.info[`${key}Text`]);
+    });
+
+    /* ABOUT */
+
+    setText("about-eyebrow", c.about.eyebrow);
+    setText("about-title", c.about.title);
+    setText("about-paragraph-one", c.about.paragraphOne);
+    setText("about-paragraph-two", c.about.paragraphTwo);
+    setText("about-paragraph-three", c.about.paragraphThree);
+    setText("visual-title", c.about.visualTitle);
+    setText("visual-subtitle", c.about.visualSubtitle);
+
+    /* PURPOSE */
+
+    setText("purpose-eyebrow", c.purpose.eyebrow);
+    setText("purpose-title", c.purpose.title);
+    setText("purpose-description", c.purpose.description);
+
+    ["one", "two", "three"].forEach(key => {
+        setText(`purpose-${key}-title`, c.purpose[`${key}Title`]);
+        setText(`purpose-${key}-text`, c.purpose[`${key}Text`]);
+    });
+
+    /* ROADMAP */
+
+    setText("roadmap-eyebrow", c.roadmap.eyebrow);
+    setText("roadmap-title", c.roadmap.title);
+    setText("roadmap-description", c.roadmap.description);
+
+    ["one", "two", "three"].forEach(key => {
+        setText(`roadmap-${key}-title`, c.roadmap[`${key}Title`]);
+        setText(`roadmap-${key}-text`, c.roadmap[`${key}Text`]);
+    });
+
+    /* COMMUNITY */
+
+    setText("community-eyebrow", c.community.eyebrow);
+    setText("community-title", c.community.title);
+    setText("community-description", c.community.description);
+    setText("community-button", c.community.button);
+
+    /* DISCORD LINKS */
+
+    document.querySelectorAll('a[href="https://discord.gg/jgsGPgz7y4"]').forEach(link => {
+        link.href = c.links.discord;
+    });
+
+}
+
+applyTidalConfig();
+
+</script>
+
+<!-- =========================================
+     ORIGINAL TIDAL WATER SHADER
+     PRESERVED FROM YOUR HOME PAGE
+========================================= -->
+
+<script>
+
+const canvas = document.getElementById("water");
+
+const gl = canvas.getContext(
+    "webgl",
+    {
+        antialias: true,
+        alpha: false
+    }
+);
+
+if (!gl) {
+    console.warn("WebGL unavailable.");
+} else {
+
+/* VERTEX SHADER */
+
+const vertexSource = `
+
+attribute vec2 position;
+
+void main(){
+
+    gl_Position =
+        vec4(
+            position,
+            0.0,
+            1.0
+        );
+
+}
+
+`;
+
+/* FRAGMENT SHADER */
+
+const fragmentSource = `
+
+precision highp float;
+
+uniform vec2 resolution;
+uniform vec2 mouse;
+uniform float time;
+
+float hash(vec2 p){
+
+    return fract(
+        sin(
+            dot(
+                p,
+                vec2(
+                    127.1,
+                    311.7
+                )
+            )
+        )
+        *43758.5453
+    );
+
+}
+
+float noise(vec2 p){
+
+    vec2 i =
+        floor(p);
+
+    vec2 f =
+        fract(p);
+
+    f =
+        f*f*
+        (3.0-2.0*f);
+
+    float a =
+        hash(i);
+
+    float b =
+        hash(
+            i+
+            vec2(
+                1.0,
+                0.0
+            )
+        );
+
+    float c =
+        hash(
+            i+
+            vec2(
+                0.0,
+                1.0
+            )
+        );
+
+    float d =
+        hash(
+            i+
+            vec2(
+                1.0,
+                1.0
+            )
+        );
+
+    return mix(
+        mix(a,b,f.x),
+        mix(c,d,f.x),
+        f.y
+    );
+
+}
+
+float waterNoise(vec2 p){
+
+    float n=0.0;
+
+    n +=
+        noise(p)
+        *.5;
+
+    n +=
+        noise(p*2.0)
+        *.25;
+
+    n +=
+        noise(p*4.0)
+        *.125;
+
+    n +=
+        noise(p*8.0)
+        *.0625;
+
+    return n;
+
+}
+
+void main(){
+
+    vec2 uv =
+        gl_FragCoord.xy/
+        resolution.xy;
+
+    vec2 p =
+        uv-.5;
+
+    p.x *=
+        resolution.x/
+        resolution.y;
+
+    vec2 flow=p;
+
+    flow +=
+        vec2(
+            time*.018,
+            time*.010
+        );
+
+    float n1 =
+        waterNoise(
+            flow*2.7
+        );
+
+    float n2 =
+        waterNoise(
+            flow*6.0-
+            time*.025
+        );
+
+    vec2 m =
+        mouse-.5;
+
+    m.x *=
+        resolution.x/
+        resolution.y;
+
+    float dist =
+        distance(
+            p,
+            m
+        );
+
+    float waves =
+        sin(
+            dist*75.0-
+            time*5.0
+        );
+
+    float falloff =
+        exp(
+            -dist*7.0
+        );
+
+    float mouseWater =
+        waves*
+        falloff;
+
+    float surface =
+        n1*.10+
+        n2*.035+
+        mouseWater*.045;
+
+    float sampleX =
+        waterNoise(
+            flow*2.7+
+            vec2(
+                .012,
+                0.0
+            )
+        );
+
+    float sampleY =
+        waterNoise(
+            flow*2.7+
+            vec2(
+                0.0,
+                .012
+            )
+        );
+
+    vec3 normal =
+        normalize(
+            vec3(
+                (n1-sampleX)*5.0,
+                (n1-sampleY)*5.0,
+                1.0
+            )
+        );
+
+    vec3 light =
+        normalize(
+            vec3(
+                -.45,
+                -.6,
+                1.0
+            )
+        );
+
+    float diffuse =
+        max(
+            dot(
+                normal,
+                light
+            ),
+            0.0
+        );
+
+    vec3 darkBlue =
+        vec3(
+            .005,
+            .20,
+            .42
+        );
+
+    vec3 midBlue =
+        vec3(
+            .01,
+            .48,
+            .72
+        );
+
+    vec3 lightBlue =
+        vec3(
+            .16,
+            .78,
+            .94
+        );
+
+    float depth =
+        smoothstep(
+            1.0,
+            0.0,
+            uv.y
+        );
+
+    vec3 color =
+        mix(
+            midBlue,
+            darkBlue,
+            depth
+        );
+
+    color =
+        mix(
+            color,
+            lightBlue,
+            diffuse*.35
+        );
+
+    float caustic =
+        sin(
+            n1*18.0+
+            time*.8
+        );
+
+    caustic =
+        smoothstep(
+            .65,
+            .95,
+            caustic
+        );
+
+    color +=
+        vec3(
+            .08,
+            .20,
+            .24
+        )
+        *caustic;
+
+    float highlight =
+        pow(
+            max(
+                normal.z,
+                0.0
+            ),
+            9.0
+        );
+
+    color +=
+        vec3(
+            .20,
+            .45,
+            .55
+        )
+        *highlight*.25;
+
+    float glow =
+        exp(
+            -dist*5.0
+        );
+
+    color +=
+        vec3(
+            .08,
+            .18,
+            .25
+        )
+        *glow;
+
+    float vignette =
+        smoothstep(
+            1.1,
+            .25,
+            length(
+                uv-.5
+            )
+        );
+
+    color *=
+        .82+
+        vignette*.18;
+
+    gl_FragColor =
+        vec4(
+            color,
+            1.0
+        );
+
+}
+
+`;
+
+/* COMPILE SHADERS */
+
+function shader(type, source) {
+
+    const s = gl.createShader(type);
+
+    gl.shaderSource(s, source);
+    gl.compileShader(s);
+
+    if (!gl.getShaderParameter(s, gl.COMPILE_STATUS)) {
+        console.error(gl.getShaderInfoLog(s));
+        gl.deleteShader(s);
+        return null;
+    }
+
+    return s;
+}
+
+const vs = shader(gl.VERTEX_SHADER, vertexSource);
+const fs = shader(gl.FRAGMENT_SHADER, fragmentSource);
+
+if (vs && fs) {
+
+    const program = gl.createProgram();
+
+    gl.attachShader(program, vs);
+    gl.attachShader(program, fs);
+    gl.linkProgram(program);
+
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.error(gl.getProgramInfoLog(program));
+    } else {
+
+        gl.useProgram(program);
+
+        /* FULLSCREEN QUAD */
+
+        const buffer = gl.createBuffer();
+
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+
+        gl.bufferData(
+            gl.ARRAY_BUFFER,
+            new Float32Array([
+                -1,-1,
+                 1,-1,
+                -1, 1,
+                -1, 1,
+                 1,-1,
+                 1, 1
+            ]),
+            gl.STATIC_DRAW
+        );
+
+        const position = gl.getAttribLocation(program, "position");
+
+        gl.enableVertexAttribArray(position);
+
+        gl.vertexAttribPointer(
+            position,
+            2,
+            gl.FLOAT,
+            false,
+            0,
+            0
+        );
+
+        /* UNIFORMS */
+
+        const resolution = gl.getUniformLocation(program, "resolution");
+        const mouse = gl.getUniformLocation(program, "mouse");
+        const time = gl.getUniformLocation(program, "time");
+
+        /* MOUSE */
+
+        let targetX = .5;
+        let targetY = .5;
+
+        let mouseX = .5;
+        let mouseY = .5;
+
+        window.addEventListener("mousemove", e => {
+
+            targetX = e.clientX / window.innerWidth;
+            targetY = 1 - e.clientY / window.innerHeight;
+
+        });
+
+        /* TOUCH */
+
+        window.addEventListener("touchmove", e => {
+
+            const touch = e.touches[0];
+
+            if (!touch) return;
+
+            targetX = touch.clientX / window.innerWidth;
+            targetY = 1 - touch.clientY / window.innerHeight;
+
+        }, { passive: true });
+
+        /* RESIZE */
+
+        function resize() {
+
+            const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+            canvas.width = innerWidth * dpr;
+            canvas.height = innerHeight * dpr;
+
+            gl.viewport(
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+        }
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        /* RENDER */
+
+        const start = performance.now();
+
+        function render(now) {
+
+            const elapsed = (now - start) / 1000;
+
+            mouseX += (targetX - mouseX) * .06;
+            mouseY += (targetY - mouseY) * .06;
+
+            gl.uniform2f(
+                resolution,
+                canvas.width,
+                canvas.height
+            );
+
+            gl.uniform2f(
+                mouse,
+                mouseX,
+                mouseY
+            );
+
+            gl.uniform1f(
+                time,
+                elapsed
+            );
+
+            gl.drawArrays(
+                gl.TRIANGLES,
+                0,
+                6
+            );
+
+            requestAnimationFrame(render);
+
+        }
+
+        requestAnimationFrame(render);
+
+    }
+}
+
+}
+
+/* =========================================
+   SCROLL REVEALS
+========================================= */
+
+const revealObserver = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+        }
+
+    });
+
+}, {
+    threshold: .12
+});
+
+document.querySelectorAll(".reveal").forEach(element => {
+    revealObserver.observe(element);
+});
+
+</script>
 
 </body>
 </html>
